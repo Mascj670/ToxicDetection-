@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toxicity Detection Interface</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+            height: 100%;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .textbox {
+            text-align: center;
+            width: 80%;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .textbox p {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            line-height: 1.6;
+            color: #333;
+            font-weight: 300;
+        }
+
+        .gradient-scale {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 80%;
+            flex-grow: 4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .color-gradient {
+            flex-grow: 1;
+            height: 30px;
+            background: linear-gradient(to right, #00FF00, #FFFF00, #FF0000);
+            margin: 0 1rem;
+        }
+
+        .label {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: #333;
+            font-weight: 300;
+        }
+
+        .not-toxic {
+            text-align: left;
+        }
+
+        .very-toxic {
+            text-align: right;
+        }
+
+        .next-button {
+            padding: 0.5rem 1rem;
+            background-color: transparent;
+            color: #333;
+            font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+            border: 2px solid #333;
+            cursor: pointer;
+            font-weight: 300;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 3%;
+        }
+
+        .next-button:hover {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="textbox">
+            <p>Online toxicity is a critical issue in today's digital landscape, affecting millions of people and undermining the sense of community and safety on social platforms. Machine learning models play a crucial role in mitigating the impact of toxic language, automatically identifying harmful content, and promoting healthier online interactions. By understanding the significance of this technology, we can foster a more inclusive and supportive digital environment for everyone.</p>
+        </div>
+        <div class="gradient-scale">
+            <span class="label not-toxic">Not Toxic</span>
+            <div class="color-gradient"></div>
+            <span class="label very-toxic">Very Toxic</span>
+            <br>
+            <button class="next-button" onclick="window.location.href='toxic'">Next</button>
+</body>
+</html>

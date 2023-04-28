@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toxicity Detection Interface</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+            padding: 2rem;
+        }
+
+        .oval-input {
+            width: 70%;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 50px;
+            outline: none;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="text" class="oval-input" id="input-text" placeholder="Input text to evaluate for toxicity">
+    </div>
+
+    <script>
+        const inputText = document.getElementById('input-text');
+        inputText.addEventListener('input', evaluateToxicity);
+
+        function evaluateToxicity() {
+            // Get the user input text
+            const inputValue = inputText.value;
+
+            // Send an AJAX request to the Flask app
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: "same-origin",
+
+                body: JSON.stringify({
+                    text: inputValue
+                }), 
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Change the background color based on the prediction
+                const container = document.querySelector('.container');
+                if (data.prediction) { // If toxic
+                    container.style.backgroundColor = '#FF0000'; // Orange background for toxic content
+                } else {
+                    container.style.backgroundColor = '#00FF00'; // Blue background for non-toxic content
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
